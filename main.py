@@ -3,44 +3,44 @@ import pandas as pd
 import psycopg2
 import matplotlib.pyplot as plt
 
-# Database connection parameters
-connection_params = {
-    'user': 'postgres',
-    'password': 'pawel',
-    'host': '127.0.0.1',
-    'port': '5432',
-    'database': 'postgres'
-}
+# # Database connection parameters
+# connection_params = {
+#     'user': 'postgres',
+#     'password': 'pawel',
+#     'host': '127.0.0.1',
+#     'port': '5432',
+#     'database': 'postgres'
+# }
 
 
-def fetch_data_to_dataframe():
-    try:
-        # Establish the connection
-        connection = psycopg2.connect(**connection_params)
-
-        # Define the SQL query to fetch data
-        sql_query = "SELECT * FROM mobile"
-
-        # Use pandas to read the SQL query into a DataFrame
-        df = pd.read_sql_query(sql_query, connection)
-
-        return df
-
-    except (Exception, psycopg2.Error) as error:
-        st.error("Error while fetching data from PostgreSQL: {}".format(error))
-
-    finally:
-        # Closing the database connection
-        if connection:
-            connection.close()
+# def fetch_data_to_dataframe():
+#     try:
+#         # Establish the connection
+#         connection = psycopg2.connect(**connection_params)
+#
+#         # Define the SQL query to fetch data
+#         sql_query = "SELECT * FROM mobile"
+#
+#         # Use pandas to read the SQL query into a DataFrame
+#         df = pd.read_sql_query(sql_query, connection)
+#
+#         return df
+#
+#     except (Exception, psycopg2.Error) as error:
+#         st.error("Error while fetching data from PostgreSQL: {}".format(error))
+#
+#     finally:
+#         # Closing the database connection
+#         if connection:
+#             connection.close()
 
 
 # Streamlit application
 st.title("Mobile Data Visualization from PostgreSQL")
 
 # Fetch data
-mobile_df = fetch_data_to_dataframe()
-
+# mobile_df = fetch_data_to_dataframe()
+mobile_df = pd.read_csv("mobile_df.csv")
 # Display data in a table
 if mobile_df is not None:
     st.write("### Mobile Data")
